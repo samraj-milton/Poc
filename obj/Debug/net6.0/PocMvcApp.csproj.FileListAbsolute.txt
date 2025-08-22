@@ -34,3 +34,4 @@ D:\poc\obj\Debug\net6.0\refint\PocMvcApp.dll
 D:\poc\obj\Debug\net6.0\PocMvcApp.pdb
 D:\poc\obj\Debug\net6.0\PocMvcApp.genruntimeconfig.cache
 D:\poc\obj\Debug\net6.0\ref\PocMvcApp.dll
+D:\poc\obj\Debug\net6.0\PocMvcApp.sourcelink.json
