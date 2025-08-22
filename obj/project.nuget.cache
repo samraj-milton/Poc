@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "29ywzIS2rrI=",
+  "dgSpecHash": "92d9lIkv5/8N2FRMHNd97dT5rfyNAy+xCkpxYk6E/Ky3PhKIdZTVQRvVL583my+Ai3yuMrWSmfldAjEVjivFGA==",
   "success": true,
-  "projectFilePath": "D:\\poc\\PocMvcApp.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\samra\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
-    "C:\\Users\\samra\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
-    "C:\\Users\\samra\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
-    "C:\\Users\\samra\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.36\\microsoft.netcore.app.host.win-x64.6.0.36.nupkg.sha512"
-  ],
+  "projectFilePath": "/home/runner/work/Poc/Poc/PocMvcApp.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

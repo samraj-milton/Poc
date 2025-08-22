@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PocMvcApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3137bd12c2b7ffee1fc1bb8c95d1476a05dbf69")]
 [assembly: System.Reflection.AssemblyProductAttribute("PocMvcApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PocMvcApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
