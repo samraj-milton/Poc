@@ -1,1 +1,34 @@
-[{"Id":1,"Name":"Gold","Price":1000,"Description":"Gold Price","Category":"22k","Stock":10}]
+[
+  {
+    "Id": 1,
+    "Name": "Gold",
+    "Price": 1000,
+    "Description": "Gold Price",
+    "Category": "22k",
+    "Stock": 10
+  },
+  {
+    "Id": 2,
+    "Name": "Laptop",
+    "Price": 999.99,
+    "Description": "High-performance laptop for work and gaming",
+    "Category": "Electronics",
+    "Stock": 10
+  },
+  {
+    "Id": 3,
+    "Name": "Wireless Mouse",
+    "Price": 29.99,
+    "Description": "Ergonomic wireless mouse with long battery life",
+    "Category": "Electronics",
+    "Stock": 50
+  },
+  {
+    "Id": 4,
+    "Name": "Office Chair",
+    "Price": 199.99,
+    "Description": "Comfortable ergonomic office chair",
+    "Category": "Furniture",
+    "Stock": 15
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "Id": 1,
+    "CustomerId": 1,
+    "OrderDate": "2024-12-15T10:30:00",
+    "Status": 2,
+    "Notes": "Urgent delivery requested",
+    "OrderItems": [
+      {
+        "Id": 1,
+        "OrderId": 1,
+        "ProductId": 2,
+        "Quantity": 1,
+        "UnitPrice": 999.99
+      },
+      {
+        "Id": 2,
+        "OrderId": 1,
+        "ProductId": 3,
+        "Quantity": 2,
+        "UnitPrice": 29.99
+      }
+    ]
+  }
+]

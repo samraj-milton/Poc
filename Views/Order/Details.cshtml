@@ -1,0 +1,196 @@
+@model PocMvcApp.Models.OrderViewModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Order Details";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Order Details - #@Model.Order.Id</h2>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Order.Id" class="btn btn-warning">Edit Order</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to Orders</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Order Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Order ID:</strong></div>
+                        <div class="col-sm-8">#@Model.Order.Id</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Order Date:</strong></div>
+                        <div class="col-sm-8">@Model.Order.OrderDate.ToString("MMMM dd, yyyy 'at' HH:mm")</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Status:</strong></div>
+                        <div class="col-sm-8">
+                            <span class="badge @GetStatusBadgeClass(Model.Order.Status) fs-6">@Model.Order.Status</span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4"><strong>Total Amount:</strong></div>
+                        <div class="col-sm-8"><strong class="text-success">$@Model.Order.TotalAmount.ToString("F2")</strong></div>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.Order.Notes))
+                    {
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>Notes:</strong></div>
+                            <div class="col-sm-8">@Model.Order.Notes</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Customer Information</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Order.Customer != null)
+                    {
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>Name:</strong></div>
+                            <div class="col-sm-8">@Model.Order.Customer.Name</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4"><strong>Email:</strong></div>
+                            <div class="col-sm-8">
+                                <a href="mailto:@Model.Order.Customer.Email">@Model.Order.Customer.Email</a>
+                            </div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(Model.Order.Customer.Phone))
+                        {
+                            <div class="row mb-3">
+                                <div class="col-sm-4"><strong>Phone:</strong></div>
+                                <div class="col-sm-8">
+                                    <a href="tel:@Model.Order.Customer.Phone">@Model.Order.Customer.Phone</a>
+                                </div>
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Order.Customer.Address))
+                        {
+                            <div class="row mb-3">
+                                <div class="col-sm-4"><strong>Address:</strong></div>
+                                <div class="col-sm-8">@Model.Order.Customer.Address</div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            Customer information not found
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5>Order Items</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Order.OrderItems.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Unit Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Order.OrderItems)
+                            {
+                                <tr>
+                                    <td>
+                                        @if (item.Product != null)
+                                        {
+                                            <div>
+                                                <strong>@item.Product.Name</strong>
+                                                @if (!string.IsNullOrEmpty(item.Product.Description))
+                                                {
+                                                    <br><small class="text-muted">@item.Product.Description</small>
+                                                }
+                                                @if (!string.IsNullOrEmpty(item.Product.Category))
+                                                {
+                                                    <br><span class="badge bg-light text-dark">@item.Product.Category</span>
+                                                }
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">Product not found (ID: @item.ProductId)</span>
+                                        }
+                                    </td>
+                                    <td>$@item.UnitPrice.ToString("F2")</td>
+                                    <td>@item.Quantity</td>
+                                    <td><strong>$@item.TotalPrice.ToString("F2")</strong></td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr class="table-success">
+                                <td colspan="3"><strong>Total Amount:</strong></td>
+                                <td><strong>$@Model.Order.TotalAmount.ToString("F2")</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    No items in this order.
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h5>Quick Actions</h5>
+        <div class="btn-group" role="group">
+            @foreach (var status in Enum.GetValues<PocMvcApp.Models.OrderStatus>())
+            {
+                if (status != Model.Order.Status)
+                {
+                    <form asp-action="UpdateStatus" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@Model.Order.Id" />
+                        <input type="hidden" name="status" value="@status" />
+                        <button type="submit" class="btn btn-outline-primary btn-sm">
+                            Mark as @status
+                        </button>
+                    </form>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@functions {
+    string GetStatusBadgeClass(PocMvcApp.Models.OrderStatus status)
+    {
+        return status switch
+        {
+            PocMvcApp.Models.OrderStatus.Pending => "bg-warning text-dark",
+            PocMvcApp.Models.OrderStatus.Processing => "bg-primary",
+            PocMvcApp.Models.OrderStatus.Shipped => "bg-info",
+            PocMvcApp.Models.OrderStatus.Delivered => "bg-success",
+            PocMvcApp.Models.OrderStatus.Cancelled => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+}

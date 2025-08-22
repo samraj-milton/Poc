@@ -1,0 +1,116 @@
+@model IEnumerable<PocMvcApp.Models.Customer>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Customer Management";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Customer Management</h2>
+        <a asp-action="Index" class="btn btn-secondary">Back to Orders</a>
+    </div>
+
+    <!-- Add Customer Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Add New Customer</h5>
+        </div>
+        <div class="card-body">
+            <form asp-action="CreateCustomer" method="post" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label">Name *</label>
+                    <input name="Name" class="form-control" required />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Email *</label>
+                    <input name="Email" type="email" class="form-control" required />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Phone</label>
+                    <input name="Phone" class="form-control" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Address</label>
+                    <input name="Address" class="form-control" />
+                </div>
+                <div class="col-md-1">
+                    <label class="form-label">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary w-100">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer List -->
+    @if (Model.Any())
+    {
+        <div class="card">
+            <div class="card-header">
+                <h5>Customer List</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Created Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var customer in Model)
+                            {
+                                <tr>
+                                    <td>@customer.Id</td>
+                                    <td><strong>@customer.Name</strong></td>
+                                    <td>
+                                        <a href="mailto:@customer.Email">@customer.Email</a>
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(customer.Phone))
+                                        {
+                                            <a href="tel:@customer.Phone">@customer.Phone</a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">-</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(customer.Address))
+                                        {
+                                            @customer.Address
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">-</span>
+                                        }
+                                    </td>
+                                    <td>@customer.CreatedDate.ToString("MM/dd/yyyy")</td>
+                                    <td>
+                                        <form asp-action="DeleteCustomer" method="post" style="display:inline;">
+                                            <input type="hidden" name="id" value="@customer.Id" />
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this customer? This action cannot be undone.');">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <h4>No Customers Found</h4>
+            <p>There are no customers in the system. Add customers using the form above to start creating orders.</p>
+        </div>
+    }
+</div>

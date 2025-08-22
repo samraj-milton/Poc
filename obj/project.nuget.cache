@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tn1rYJM7/AY65+yCydePzaVU5jDZcrNYcfEtdJ6X33Y5XSfdKLO8H0AiD1bscqppv/i2j4pPGWdTPu0/HCM/Rw==",
+  "dgSpecHash": "92d9lIkv5/8N2FRMHNd97dT5rfyNAy+xCkpxYk6E/Ky3PhKIdZTVQRvVL583my+Ai3yuMrWSmfldAjEVjivFGA==",
   "success": true,
   "projectFilePath": "/home/runner/work/Poc/Poc/PocMvcApp.csproj",
-  "expectedPackageFiles": [
-    "/home/runner/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
-    "/home/runner/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
-    "/home/runner/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.36/microsoft.netcore.app.host.linux-x64.6.0.36.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
